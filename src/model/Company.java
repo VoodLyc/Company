@@ -51,4 +51,43 @@ public class Company{
 
 		this.areas = areas;
 	}
+
+//Methods
+
+	public void addRecruitmentArea(String geographicalArea){
+
+		areas.add(new RecruitmentArea(geographicalArea));
+	}
+
+	public String reportOfCandidates(){
+
+		String report = "";
+
+		for(int i = 0; i < areas.size(); i++){
+
+			if(areas.get(i) != null){
+
+			report += areas.get(i).reportOfRecruitmentArea();
+		}
+	}
+
+	return report;
+}
+
+	public double averagePerCharacteristicandPerRecruitmentArea(RecruitmentArea recruitmentArea, Characteristic characteristic){
+
+		double average = 0.0; 	
+
+		for(int i = 0; i < areas.size(); i++){
+
+			if(areas.get(i) != null && areas.get(i).getGeographicalArea().equals(recruitmentArea.getGeographicalArea())){
+
+				average = areas.get(i).averagePerCharacteristic(characteristic);
+			}
+		}
+
+		return average;
+
+	}
+
 }

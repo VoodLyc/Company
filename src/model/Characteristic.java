@@ -10,10 +10,10 @@ public class Characteristic{
 
 //Constructor
 
-	public Characteristic(String name){
+	public Characteristic(String name, double qualification){
 
 		this.name = name;
-		this.qualification = 0.0;
+		this.qualification = qualification;
 		this.threshold = 0.0;
 	}
 
@@ -49,5 +49,14 @@ public class Characteristic{
 	public void setThreshold(double threshold){
 
 		this.threshold = threshold;
+	}
+
+	public String reportOfCharacteristic(){
+
+		String report = "";
+
+		report = "Characteristic: " + name + "Qualification: " + qualification + "\n";
+
+		return report;
 	}
 }

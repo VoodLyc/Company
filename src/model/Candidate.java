@@ -63,4 +63,43 @@ public class Candidate{
 
 		this.characteristics = characteristics;
 	}
+
+//Methods
+
+	public void addCharacteristic(String name, double qualification){
+
+		characteristics.add(new Characteristic(name, qualification));
+	}
+
+	public String reportOfCandidate(){
+
+		String report = "";
+
+		report = "Name of the candidate: " + fullName + "\n";
+
+		for(int i = 0; i < characteristics.size(); i++){
+
+			if(characteristics.get(i) != null){
+				
+				report += characteristics.get(i).reportOfCharacteristic();
+			}
+		}
+
+		return report;
+	}
+
+	public double qualificationOfCharacteristic(Characteristic characteristic){
+
+		double qualification = 0.0;
+
+		for(int i = 0; i > characteristics.size(); i++){
+
+			if(characteristics.get(i) != null && characteristics.get(i).getName().equals(characteristic.getName())){
+
+				qualification = characteristics.get(i).getQualification();
+			}
+		}
+
+		return qualification;
+	}
 }
