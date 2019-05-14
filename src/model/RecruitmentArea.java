@@ -83,4 +83,31 @@ public class RecruitmentArea{
 
 		return average;
 	}
+
+	public boolean addCharacteristic(String id, String name, double qualification){
+
+		boolean success = false;
+
+		for(int i = 0; i < candidates.size() && success != true; i++){
+
+			if(candidates.get(i) != null && candidates.get(i).getId().equals(id)){
+
+				candidates.get(i).addCharacteristic(name, qualification);
+				success = true;
+			}
+		}
+
+		return success;
+	}
+
+	public void setThreshold(double threshold, String name){
+		
+		for(int i = 0; i < candidates.size(); i++){
+
+			if(candidates.get(i) != null){
+
+				candidates.get(i).setThreshold(threshold, name);
+			}
+		}
+	}
 }

@@ -59,6 +59,33 @@ public class Company{
 		areas.add(new RecruitmentArea(geographicalArea));
 	}
 
+	public void addCandidate(String id, String fullName, char gender, String geographicalArea){
+
+		for(int i = 0; i < areas.size(); i++){
+			
+			if(areas.get(i) != null && areas.get(i).getGeographicalArea().equals(geographicalArea)){
+
+			areas.get(i).addCandidate(id, fullName, gender);
+
+			}
+		}
+	}
+
+	public String showGeographicalAreas(){
+
+		String geographicalAreas = "";
+
+		for(int i = 0; i < areas.size(); i++){
+
+			if(areas.get(i) != null){
+
+				geographicalAreas += areas.get(i).getGeographicalArea() + "\n";
+			}
+		}
+
+		return geographicalAreas;
+	}
+
 	public String reportOfCandidates(){
 
 		String report = "";
@@ -88,6 +115,33 @@ public class Company{
 
 		return average;
 
+	}
+
+	public void addCharacteristic(String id, String name, double qualification){
+
+		boolean success = false;
+
+		for(int i = 0; i < areas.size() && success != true; i++){
+
+			if(areas.get(i) != null){
+
+				if(areas.get(i).addCharacteristic(id, name, qualification) == true){
+
+					success = true;
+				}
+			}
+		}
+	}
+
+	public void setThreshold(double threshold, String name){
+
+		for(int i = 0; i < areas.size(); i++){
+
+			if(areas.get(i) != null){
+
+				areas.get(i).setThreshold(threshold, name);
+			}
+		}
 	}
 
 }

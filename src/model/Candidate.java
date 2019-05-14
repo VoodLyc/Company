@@ -102,4 +102,18 @@ public class Candidate{
 
 		return qualification;
 	}
+
+	public void setThreshold(double threshold, String name){
+
+		boolean success = false;
+
+		for(int i = 0; i < characteristics.size() && success != true; i++){
+
+			if(characteristics.get(i) != null && characteristics.get(i).getName().equals(name)){
+
+				characteristics.get(i).setThreshold(threshold);
+				success = true;
+			}
+		}
+	}
 }
