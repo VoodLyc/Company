@@ -47,7 +47,7 @@ public class RecruitmentArea{
 		candidates.add(new Candidate(id, fullName, gender));
 	}
 
-	public String reportOfRecruitmentArea(){
+	public String reportOfCandidates(){
 
 		String report = "";
 
@@ -64,7 +64,7 @@ public class RecruitmentArea{
 		return geographicalArea;
 	}
 
-	public double averagePerCharacteristic(Characteristic characteristic){
+	public double averagePerCharacteristic(String name){
 
 		int counter = 0;
 		double average = 0.0;
@@ -73,13 +73,13 @@ public class RecruitmentArea{
 
 			if(candidates.get(i) != null){
 
-				average += candidates.get(i).qualificationOfCharacteristic(characteristic);
+				average += candidates.get(i).qualificationOfCharacteristic(name);
 
 				counter++;
 			}
 		}
 
-		average = average / counter;
+		average /= counter;
 
 		return average;
 	}
@@ -100,13 +100,99 @@ public class RecruitmentArea{
 		return success;
 	}
 
-	public void setThreshold(double threshold, String name){
-		
+	public void modifyThreshold(double threshold, String name){
+
 		for(int i = 0; i < candidates.size(); i++){
 
 			if(candidates.get(i) != null){
 
-				candidates.get(i).setThreshold(threshold, name);
+				candidates.get(i).modifyThreshold(threshold, name);
+			}
+		}
+	}
+
+	public int calculateTheNumberOfWomen(){
+
+		int counter = 0;
+
+		for(int i = 0; i < candidates.size(); i++){
+
+			if(candidates.get(i) != null && candidates.get(i).getGender() == 'F'){
+
+				counter++;
+			}
+		}
+
+		return counter;
+	}
+
+	public int calculateTheNumberOfCandidates(){
+
+		int numberOfCandidates = 0;
+
+		numberOfCandidates = candidates.size();
+
+		return numberOfCandidates;
+	}
+
+	public int numberOfCandidatesOverTheThreshold(double threshold){
+
+		double average = 0.0;
+		int counter = 0;
+
+		for(int i = 0; i < candidates.size(); i++){
+
+			if(candidates.get(i) != null){
+
+				average = candidates.get(i).averageOfCharacteristics();
+
+				if(average > threshold){
+
+					counter++;
+				}
+			}
+		}
+
+		return counter;
+	}
+
+	public double candidatesAveragePerCharacteristic(String name){
+
+		int counter = 0;
+		double average = 0.0;
+
+		for(int i = 0; i < candidates.size(); i++){
+
+			if(candidates.get(i) != null){
+
+				average += candidates.get(i).characteristicQualification(name);
+
+				counter++;
+			}
+		}
+
+		average /= counter;
+
+		return average;
+	}
+
+	public void getThresholdOfCharacteristic(String name){
+
+		double average = 0.0;
+		double threshold = 0.0;
+
+		for(int i = 0; i < candidates.size(); i++){
+
+			if(candidates.get(i) != null){
+
+				average = candidatesAveragePerCharacteristic(name);
+				threshold = candidates.get(i).getThresholdOfCharacteristic(name);
+
+				if(average < threshold){
+
+					candidates.remove(i);
+				}
+
 			}
 		}
 	}

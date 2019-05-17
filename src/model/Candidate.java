@@ -88,13 +88,13 @@ public class Candidate{
 		return report;
 	}
 
-	public double qualificationOfCharacteristic(Characteristic characteristic){
+	public double qualificationOfCharacteristic(String name){
 
 		double qualification = 0.0;
 
 		for(int i = 0; i > characteristics.size(); i++){
 
-			if(characteristics.get(i) != null && characteristics.get(i).getName().equals(characteristic.getName())){
+			if(characteristics.get(i) != null && characteristics.get(i).getName().equals(name)){
 
 				qualification = characteristics.get(i).getQualification();
 			}
@@ -103,7 +103,7 @@ public class Candidate{
 		return qualification;
 	}
 
-	public void setThreshold(double threshold, String name){
+	public void modifyThreshold(double threshold, String name){
 
 		boolean success = false;
 
@@ -115,5 +115,58 @@ public class Candidate{
 				success = true;
 			}
 		}
+	}
+
+	public double averageOfCharacteristics(){
+
+		double average = 0.0;
+		int counter = 0;
+
+		for(int i = 0; i < characteristics.size(); i++){
+
+			if(characteristics.get(i) != null){
+
+				average += characteristics.get(i).getQualification();
+				counter++;
+			} 
+		}
+
+		average /= counter;
+
+		return average; 
+	}
+
+	public double characteristicQualification(String name){
+
+		boolean success = false;
+		double qualification = 0.0;
+
+		for(int i = 0; i < characteristics.size() && success != true; i++){
+
+			if(characteristics.get(i) != null && characteristics.get(i).getName().equals(name)){
+
+				qualification = characteristics.get(i).getQualification();
+				success = true;
+			}
+		}
+
+		return qualification;
+	}
+
+	public double getThresholdOfCharacteristic(String name){
+
+		boolean success = false;
+		double threshold = 0.0;
+
+		for(int i = 0; i < characteristics.size() && success != true; i++){
+
+			if(characteristics.get(i) != null && characteristics.get(i).getName().equals(name)){
+
+				threshold = characteristics.get(i).getThreshold();
+				success = true;
+			}
+		}
+
+		return threshold;
 	}
 }
