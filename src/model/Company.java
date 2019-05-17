@@ -231,7 +231,9 @@ public class Company{
 
 	}
 
-	public void filterByAttitude(String name){
+	public void filterByAttitude(){
+
+		String name = "Attitude";
 
 		for(int i = 0; i < areas.size(); i++){
 

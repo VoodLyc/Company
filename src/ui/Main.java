@@ -49,10 +49,11 @@ public class Main{
 			System.out.println("5. Show a report of candidates.");
 			System.out.println("6. Calculate the average per characteristic and recruitment area.");
 			System.out.println("7. Calculate the percentage of women.");
-			System.out.println("");
-			System.out.println("");
-			System.out.println("");
-			System.out.println("");
+			System.out.println("8.");
+			System.out.println("9. Calculate the recruitment Area with more candidates over the threshold");
+			System.out.println("10. Calculate the average of the recruitments areas in one characteristic");
+			System.out.println("11.");
+			System.out.println("12. Quit.");
 
 			int choiceNum = 0;
 			String choice = reader.nextLine();
@@ -102,7 +103,22 @@ public class Main{
 
 				break;
 
+				case 9:
 
+				recruitmentAreaWithMoreCandidatesOverTheThresholdMenu();
+
+				break;
+
+				case 10:
+
+				calculateTheAverageOfTheRecruitmentAreaMenu();
+
+				break;
+
+				case 12:
+
+				System.out.println("Goodbye.");
+				running = false;
 			}
 		}
 	}
@@ -159,7 +175,7 @@ public class Main{
 
 			}
 
-			System.out.println("Please write the geographical area in  do you want to register the new candidate");
+			System.out.println("Please write the geographical area in do you want to register the new candidate");
 			company.showGeographicalAreas();
 			String geographicalArea = reader.nextLine();
 
@@ -204,7 +220,7 @@ public class Main{
 
 	public void showReportOfCandidatesMenu(){
 
-		company.reportOfCandidates();
+		System.out.println(company.reportOfCandidates());
 	}
 
 	public void averagePerCharacteristicAndGeographicalAreaMenu(){
@@ -218,7 +234,7 @@ public class Main{
 		System.out.println("Please enter the name of the characteristic:");
 		String name = reader.nextLine();
 
-		company.averagePerCharacteristicAndPerRecruitmentArea(geographicalArea, name);
+		System.out.println(company.averagePerCharacteristicAndPerRecruitmentArea(geographicalArea, name));
 
 	}
 
@@ -228,5 +244,20 @@ public class Main{
 
 		System.out.println("The percentage of women is:");
 		System.out.println(company.calculateThePercentegeOfWomen());
+	}
+
+	public void recruitmentAreaWithMoreCandidatesOverTheThresholdMenu(){
+
+		System.out.println(company.calculateTheRecruitmentAreaWithMoreCandidatesOverTheThreshold());
+	}
+
+	public void calculateTheAverageOfTheRecruitmentAreaMenu(){
+
+		Scanner reader = new Scanner(System.in);
+
+		System.out.println("Enter the name of the characteristic");
+		String name = reader.nextLine();
+
+		System.out.println(company.averageOfRecruitmentAreasPerCharacteristic(name));
 	}
 }
